@@ -1,9 +1,25 @@
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  HStack,
+  Icon,
+  Kbd,
+  SimpleGrid,
+  Text,
+  Tooltip,
+  VStack
+} from '@chakra-ui/react'
+import {
+  ChevronDown,
+  ChevronUp,
+  HelpCircleIcon,
+  InfoIcon,
+  ZapIcon
+} from 'lucide-react'
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { CircleFlag } from 'react-circle-flags'
 
 export default function Home() {
   return (
@@ -14,101 +30,266 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
+
+      <SimpleGrid columns={3} mt="3rem">
+        <Box>
+          <VStack>
+            <HStack>
+              <ZapIcon />
+              <Text fontWeight="extrabold" fontSize="3xl">
+                HLTV-X
+              </Text>
+            </HStack>
+            <VStack background="whiteAlpha.200" rounded="lg" p="0.5rem">
               <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
+                src="/dev1ce.png"
                 width={100}
-                height={24}
-                priority
+                height={100}
+                alt="dev1ce"
+                style={{ width: 'auto' }}
               />
-            </a>
-          </div>
-        </div>
+              <Text fontSize="sm">Player of the week</Text>
+              <HStack>
+                <HStack spacing="3px">
+                  <Image
+                    src="/Astralis.png"
+                    width={25}
+                    height={25}
+                    alt="Astralis"
+                    style={{ width: 'auto' }}
+                  />
+                  <Text fontWeight="extrabold">dev1ce</Text>
+                </HStack>
+                <Tooltip
+                  label={
+                    <VStack spacing={0}>
+                      <Text fontWeight="bold">0.42</Text>
+                      <Text>AWP kills / round</Text>
+                    </VStack>
+                  }
+                >
+                  <HelpCircleIcon />
+                </Tooltip>
+              </HStack>
+            </VStack>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
+            <VStack pt="1rem" spacing={0}>
+              <Text fontWeight="bold">Ranking</Text>
+              <VStack
+                alignItems="start"
+                background="whiteAlpha.200"
+                rounded="lg"
+                p="0.5rem"
+                position="relative"
+                roundedBottom="none"
+                spacing="1rem"
+              >
+                {[
+                  [
+                    1,
+                    'Astralis',
+                    <Image
+                      key={0}
+                      src="/Astralis.png"
+                      width={17}
+                      height={17}
+                      alt="Astralis"
+                      style={{ width: 'auto' }}
+                    />
+                  ],
+                  [
+                    0,
+                    'Vitality',
+                    <Image
+                      key={1}
+                      src="/Vitality.png"
+                      width={17}
+                      height={17}
+                      alt="Vitality"
+                      style={{ width: 'auto' }}
+                    />
+                  ],
+                  [
+                    1,
+                    'MOUZ',
+                    <Image
+                      key={2}
+                      src="/MOUZ.png"
+                      width={17}
+                      height={17}
+                      alt="MOUZ"
+                      style={{ width: 'auto' }}
+                    />
+                  ],
+                  [
+                    0,
+                    'Heroic',
+                    <Image
+                      key={3}
+                      src="/Heroic.png"
+                      width={17}
+                      height={17}
+                      alt="Heroic"
+                      style={{ width: 'auto' }}
+                    />
+                  ],
+                  [
+                    1,
+                    'G2',
+                    <Image
+                      key={4}
+                      src="/G2.png"
+                      width={17}
+                      height={17}
+                      alt="G2"
+                      style={{ width: 'auto' }}
+                    />
+                  ]
+                ].map((teamName, index) => (
+                  <HStack key={index}>
+                    <Text fontWeight="bold">{index + 1}.</Text>
+                    {teamName[2]}
+                    <Text pr="2rem">{teamName[1]}</Text>
+                    {teamName[0] ? (
+                      <Box position="absolute" right="0" pr="0.5rem">
+                        <ChevronUp color="#66ff99" />
+                      </Box>
+                    ) : (
+                      <Box position="absolute" right="0" pr="0.5rem">
+                        <ChevronDown color="red" />
+                      </Box>
+                    )}
+                  </HStack>
+                ))}
+              </VStack>
+              <Kbd
+                textAlign="center"
+                roundedTop="none"
+                backgroundColor="whiteAlpha.100"
+                width="full"
+              >
+                {new Date().toLocaleDateString('en-GB')}
+              </Kbd>
+            </VStack>
+          </VStack>
+        </Box>
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
+        <Box>
+          <VStack alignItems="start">
+            <Image
+              style={{ width: 'auto', borderRadius: '1rem' }}
+              src="/news-banner.png"
+              priority
+              width={600}
+              height={600}
+              alt="banner"
+            />
+            <Box
+              backgroundColor="orange"
+              textColor="#292929"
+              fontWeight="medium"
+              px="0.5rem"
+              rounded="md"
+            >
+              CS2 News
+            </Box>
+          </VStack>
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
+          <VStack spacing="0.5rem">
+            {Object.entries({
+              today: {
+                at: 'Austria',
+                be: 'Belgium',
+                bg: 'Bulgaria',
+                cy: 'Cyprus',
+                cz: 'the Czech Republic',
+                de: 'Germany',
+                dk: 'Denmark',
+                ee: 'Estonia',
+                es: 'Spain',
+                fi: 'Finland'
+              },
+              yesterday: {
+                fr: 'France',
+                gr: 'Greece',
+                hr: 'Croatia',
+                hu: 'Hungary',
+                ie: 'Ireland',
+                it: 'Italy',
+                lt: 'Lithuania',
+                lu: 'Luxembourg',
+                lv: 'Latvia',
+                mt: 'Malta',
+                nl: 'the Netherlands',
+                pl: 'Poland',
+                pt: 'Portugal',
+                ro: 'Romania',
+                se: 'Sweden',
+                si: 'Slovenia',
+                sk: 'Slovakia'
+              }
+            }).map((day, index) => (
+              <VStack key={index} width="full" _notFirst={{ mt: '1rem' }}>
+                <Text fontWeight="bold">{day[0].toUpperCase()}</Text>
+                {Object.entries(day[1]).map((countryCode, index) => (
+                  <Button
+                    justifyContent="start"
+                    key={index}
+                    pl="0.25rem"
+                    height="2rem"
+                    width="full"
+                    rounded="md"
+                  >
+                    <HStack spacing="0.25rem">
+                      <CircleFlag countryCode={countryCode[0]} width="20" />
+                      <Text fontWeight="medium">
+                        News from {countryCode[1]}
+                      </Text>
+                    </HStack>
+                  </Button>
+                ))}
+              </VStack>
+            ))}
+          </VStack>
+        </Box>
 
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+        <Box>
+          <VStack>
+            <ButtonGroup isAttached orientation="vertical">
+              {[
+                ['dev1ce', 'GOAT'],
+                ['bywoo', 'BOAT'],
+                ['donk', 'BOAT'],
+                ['bywoo', 'GOAT'],
+                ['bywoo', 'GOAT'],
+                ['donk', 'BOAT'],
+                ['bywoo', 'GOAT'],
+                ['dev1ce', 'GOAT'],
+                ['zywoo', 'GOAT'],
+                ['s1mple', 'GOAT'],
+                ['bywoo', 'BOAT']
+              ].map((threadName, index) => (
+                <Button
+                  roundedLeft={0}
+                  borderLeftColor={['red', 'green'][~~(2 * Math.random())]}
+                  borderLeftWidth="2px"
+                  key={index}
+                  width="10rem"
+                  rounded="2xl"
+                  _notLast={{
+                    borderBottomColor: 'whiteAlpha.200',
+                    borderBottomWidth: 'thin'
+                  }}
+                >
+                  <Text>
+                    {threadName[0]} the {threadName[1]}
+                  </Text>
+                </Button>
+              ))}
+            </ButtonGroup>
+          </VStack>
+        </Box>
+      </SimpleGrid>
     </>
   )
 }
